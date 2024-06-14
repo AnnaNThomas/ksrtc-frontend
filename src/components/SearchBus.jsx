@@ -67,5 +67,6 @@ const SearchBus = () => {
     </div>
   )
 }
+}
 
 export default SearchBus
