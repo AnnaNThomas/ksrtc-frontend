@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Nav from './Nav'
 
 const ViewAll = () => {
+    const[data,changedata]=useState([])
+    const fetchData = () => {
+        axios.get()
+          .then(response => {
+            changedata(response.data)
+          })
+          .catch()
+          .finally()
+      }
+      useEffect(() => {fetchData();}, [])
+    
   return (
     <div>
+        <Nav/>
         <div className="container">
             <div className="row">
                 <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                <div class="text-bg-info p-3">VIEW ALL</div>
                 <table class="table">
   <thead>
     <tr>
@@ -18,14 +32,17 @@ const ViewAll = () => {
     </tr>
   </thead>
   <tbody>
-  <tr>
-      <td scope="col">Anna</td>
-      <td scope="col">anna@gmail.com</td>
-      <td scope="col">anna123</td>
-      <td scope="col">anna123</td>
-      <td scope="col">female</td>
-      <td scope="col">9087234123</td>
-    </tr>
+ {data.map(
+    (value,index)=>{return <tr>
+        <td>{value.name}</td>
+        <td>{value.email}</td>
+        <td>{value.password}</td>
+        <td>{value.confirmpassword}</td>
+        <td>{value.gender}</td>
+        <td>{value.phoneno}</td>
+        
+      </tr>}
+ )}
   </tbody>
 </table>
                 </div>
