@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from './Nav'
+import axios from 'axios'
 
 const ViewAll = () => {
     const[data,changedata]=useState([])
-    const fetchData = () => {
-        axios.get()
-          .then(response => {
-            changedata(response.data)
-          })
-          .catch()
-          .finally()
-      }
-      useEffect(() => {fetchData();}, [])
-    
+const fetchData=()=>{
+  axios.get("https://jsonplaceholder.typicode.com/todos").then(
+    (response)=>{
+      changedata(response.data)
+    }
+  ).catch().finally()
+}
+useEffect(()=>{fetchData()},[])
+  
   return (
     <div>
         <Nav/>
@@ -34,11 +34,11 @@ const ViewAll = () => {
   <tbody>
  {data.map(
     (value,index)=>{return <tr>
-        <td>{value.name}</td>
-        <td>{value.email}</td>
+        <td>{value.userId}</td>
+        <td>{value.id}</td>
+        <td>{value.title}</td>
         <td>{value.password}</td>
-        <td>{value.confirmpassword}</td>
-        <td>{value.gender}</td>
+        <td>{value.completed}</td>
         <td>{value.phoneno}</td>
         
       </tr>}
